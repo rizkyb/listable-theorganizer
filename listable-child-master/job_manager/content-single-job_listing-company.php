@@ -21,7 +21,7 @@ $max_pax = get_post_meta( get_the_ID(), '_org_max_pax', true);
 $org_grade = get_post_meta( get_the_ID(), '_org_grade', true);
 $area_outdoor = get_post_meta( get_the_ID(), '_area_type_outdoor', true);
 $area_indoor = get_post_meta( get_the_ID(), '_area_type_indoor', true);
- 
+$area_hasil1  = "";$area_hasil2  = "";
 ?>
 <div class="single-meta">
 	<?php
@@ -78,20 +78,31 @@ $area_indoor = get_post_meta( get_the_ID(), '_area_type_indoor', true);
 		<div>Min Pax : <?php echo number_format_i18n($min_pax) ;?></div>
 		<div>Max Pax : <?php echo number_format_i18n($max_pax) ;?></div>
 		
-		<div><strong>Area Type :</strong></div>
-		<?php if ($area_indoor == "1") { ;?>
-		<div>Indoor</div>
-		<?php } else {;?>
-		<div> - </div>
-		<?php } ;?>
+	
+		<?php if ($area_indoor == "1" && $area_outdoor == "0") {?>
+		<div><?php if (empty($area_hasil1)) { ;?></div>
+		<div><?php echo 'Area Type : '. $area_hasil1 = "Indoor" ;?></div>
+		<?php } else {?>
+		<div> <?php $area_hasil1 = "";?> </div>
+		<?php } ?>
+		<?php } ?>
 		
-		<?php if ($area_outdoor == "1") { ;?>
-		<div>Outdoor</div>
+		<?php if ($area_outdoor == "1" && $area_indoor == "0") { ?>
+		<div><?php if (empty($area_hasil2)) { ;?></div>
+		<div><?php echo 'Area Type : '.$area_hasil2 = "Outdoor";?></div>
 		<?php } else {;?>
-		<div> - </div>
-		<?php } ;?>		
+		<div> <?php $area_hasil2 = "";?> </div>
+		<?php } ?>		
+		<?php } ?>	
+
 		
-		<div></div>
+		<?php if ($area_outdoor == "1" && $area_indoor == "1") { ?>
+		<div><?php echo 'Area Type : Indoor, Outdoor' ;?></div>
+		<?php } else {;?>
+		<div> <?php $area_hasil2 = "";?> </div>
+		<?php } ?>		
+
+
 	</div>		
 	
 </div>
